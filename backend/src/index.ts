@@ -6,7 +6,9 @@ import User from './providers/entities/User'
 
 
 (async () => {
-    await sequelize.sync()
+    await sequelize.sync({
+        force: true
+    })
 })()
 
 // app.get('/', async (request, reply) => {
