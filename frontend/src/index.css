@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Muller, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'Muller';
+  font-style: regular;
+  font-weight: 500;
+  src: url('./fonts/Muller\ Regular.otf') format('opentype')
+}
+
+@font-face {
+  font-family: 'Muller';
+  font-style: bold;
+  font-weight: bold;
+  src: url('./fonts/Fontfabric\ -\ MullerBold.otf') format('opentype')
+}
+
+
+@font-face {
+  font-family: 'Muller';
+  font-style: medium;
+  font-weight: medium;
+  src: url('./fonts/Fontfabric\ -\ MullerMedium.otf') format('opentype')
+}
