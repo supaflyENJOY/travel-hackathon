@@ -5,7 +5,11 @@ import Place from './Place'
 const Tag = sequelize.define('Tag', {
     titile: Sequelize.STRING,
 })
-Tag.belongsToMany(Place, {through: 'PlaceTag'});
-Place.belongsToMany(Tag, {through: 'PlaceTag'});
+Tag.belongsToMany(Place, {
+    through: 'PlaceTag'
+});
+Place.belongsToMany(Tag, {
+    through: 'PlaceTag'
+});
 
 export default Tag
