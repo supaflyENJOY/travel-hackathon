@@ -1,11 +1,8 @@
 import * as Sequelize from 'sequelize'
+import config from '../utils/config';
 
-const dbName = process.env.DB_NAME;
-const userName = process.env.DB_USERNAME;
-const password = process.env.DB_PASSWORD;
-
-export default new Sequelize(dbName, userName, password, {
-    host: 'localhost',
+export default new Sequelize(config.DB_NAME, config.DB_USERNAME, config.DB_PASSWORD, {
+    host: config.DB_HOSTNAME,
     dialect: 'mysql',
   
     pool: {
