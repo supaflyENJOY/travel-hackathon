@@ -19,8 +19,7 @@
     "png-to-jpeg": "^1.0.1",
     "s3": "^4.4.0",
     "sequelize": "^4.42.0",
-    "typescript": "^3.3.3333",
-    "uniqid": "^5.0.3"
+    "typescript": "^3.3.3333"
   },
   "devDependencies": {
     "@types/node": "^11.9.5",
