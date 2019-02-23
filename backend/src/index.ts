@@ -1,4 +1,5 @@
-require('dotenv').config()
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 import sequelize from './providers/sequelize'
 import User from './providers/entities/User'
