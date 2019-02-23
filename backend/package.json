@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --mode development --target node index.js; node dist/main.js",
+    "dev": "tsc; node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,7 +12,12 @@
   "dependencies": {
     "dotenv": "^6.2.0",
     "fastify": "^1.14.1",
+    "fs-extra": "^7.0.1",
+    "imagemin": "^6.1.0",
+    "imagemin-jpegtran": "^6.0.0",
     "mysql2": "^1.6.5",
+    "png-to-jpeg": "^1.0.1",
+    "s3": "^4.4.0",
     "sequelize": "^4.42.0",
     "typescript": "^3.3.3333"
   },
