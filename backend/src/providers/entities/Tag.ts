@@ -3,7 +3,7 @@ import sequelize from '../sequelize'
 import Place from './Place'
 
 const Tag = sequelize.define('Tag', {
-    titile: Sequelize.STRING,
+    title: Sequelize.STRING,
 })
 Tag.belongsToMany(Place, {
     through: 'PlaceTag'
