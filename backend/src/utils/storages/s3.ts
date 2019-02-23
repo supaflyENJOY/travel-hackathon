@@ -14,7 +14,6 @@ export default () => {
         s3Options: {
             accessKeyId: config.AWS_ACCESS_KEY,
             secretAccessKey: config.AWS_SECRET_KEY,
-            region: config.AWS_REGION,
         },
     });
 
@@ -32,7 +31,7 @@ export default () => {
                 var uploader = client.uploadFile(params);
                 uploader.on('error', reject);
                 uploader.on('end', () => {
-                    const publicUrl = s3.getPublicUrl(config.AWS_BUCKET_NAME, resolvedKey, config.AWS_REGION);
+                    const publicUrl = `${config.AWS_PUBLIC_URL}${resolvedKey}`;
                     resolve(publicUrl);
                 });
             })
