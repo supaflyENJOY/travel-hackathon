@@ -86,7 +86,7 @@ function drawer({
           {checkboxes}
         </FormGroup>
         <p>By City</p>
-        <FormControl className={classes.formControl}>
+        {/* <FormControl className={classes.formControl}>
         <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
         <Select
           multiple
@@ -103,7 +103,7 @@ function drawer({
             </MenuItem>
           ))}
         </Select>
-      </FormControl>
+      </FormControl> */}
       </Wrapper>
       </SwipeableDrawer>
     </>

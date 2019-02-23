@@ -4,8 +4,9 @@ import ChipInput from "material-ui-chip-input";
 import { withStyles } from "@material-ui/core/styles";
 import Gallery from "react-photo-gallery";
 import Background from "../images/background.jpg";
-import Drawer from './Drawer';
-
+import Drawer from "./Drawer";
+import SelectedImage from "./SelectedImage"
+//import PopUp from "./PopUp"
 
 const styles = {
   inputRoot: {
@@ -47,7 +48,6 @@ const Header = styled.div`
 const SearchInput = styled.div`
   display: flex;
   flex-direction: column;
-
   p:first-child {
     text-align: center;
     color: #fff;
@@ -81,24 +81,25 @@ const SearchResult = styled.div`
 function Search(props) {
   const { classes } = props;
   const [drawerState, setDrawerState] = useState({
-    right: true
-  })
+    right: false
+  });
+
+  const[selectedPhoto, setSelectedPhoto] = useState(null)
 
   const toggleDrawer = (side, open) => () => {
-		setDrawerState({ ...drawerState, [side]: open })
-  }
-  
-  
+    setDrawerState({ ...drawerState, [side]: open });
+  };
+
   const [cities, setCities] = useState([
     {
-      id:1,
-      title:"Zhytomyr"
-   },
-   {
-      id:2,
-      title:"Kyiv"
-   }
-  ])
+      id: 1,
+      title: "Zhytomyr"
+    },
+    {
+      id: 2,
+      title: "Kyiv"
+    }
+  ]);
 
   function handleChange(event) {
     setCities(event.target.value);
@@ -106,28 +107,24 @@ function Search(props) {
 
   const [categories, setCategories] = useState([
     {
-      id:1,
-      title:"architecture"
+      id: 1,
+      title: "architecture"
     },
     {
-      id:2,
-      title:"nature"
-   }, 
-   {
-    id:3,
-    title:"selfiePoints"
-   }
-  ])
-  // categories.filter(item => item.checked).join(',')
+      id: 2,
+      title: "nature"
+    },
+    {
+      id: 3,
+      title: "selfiePoints"
+    }
+  ]);
 
   const handleChangeCategory = elem => event => {
-    elem.checked = !elem.checked
-    setCategories(categories);   
-    console.log(categories) 
+    elem.checked = !elem.checked;
+    setCategories(categories);
+    console.log(categories);
   };
-
-
-
 
   const photos = [
     {
@@ -184,8 +181,8 @@ function Search(props) {
       <Header>
         <AppBar>
           <p>Logo</p>
-          <a onClick={ toggleDrawer('right', true) }>Icon</a>
-        </AppBar> 
+          <a onClick={toggleDrawer("right", true)}>Icon</a>
+        </AppBar>
         <SearchInput>
           <p>Find fancy places using tags!</p>
           <ChipInput
@@ -203,9 +200,15 @@ function Search(props) {
       </Header>
       <SearchResult>
         <p>Recommended</p>
-        <Gallery photos={photos} />
+        <Gallery 
+          photos={photos} 
+          ImageComponent={SelectedImage} 
+          changeId={setSelectedPhoto} 
+          direction='column'
+          margin={5}
+          />
       </SearchResult>
-      <Drawer 
+      <Drawer
         toggleDrawer={toggleDrawer}
         drawerState={drawerState}
         categories={categories}
