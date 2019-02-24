@@ -4,11 +4,11 @@ import User from './User'
 import Place from './Place'
 
 const Image = sequelize.define('Image', {
-    placeId: Sequelize.INTEGER,
-    authorId: Sequelize.INTEGER,
-    imagePath: Sequelize.STRING
+    imagePath: Sequelize.STRING,
+    width: Sequelize.INTEGER,
+    heigth: Sequelize.INTEGER
 })
-Image.belongsTo(Place)
+//Image.belongsTo(Place)
 Image.belongsTo(User)
 
 export default Image
