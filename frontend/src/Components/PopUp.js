@@ -37,7 +37,7 @@ const ImageContainer = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 85%;
+  width: 80%;
 `;
 
 const SimilarPhotos = styled.div`
@@ -46,16 +46,16 @@ const SimilarPhotos = styled.div`
   justify-content: space-around;
   align-items: center;
   img{
-    height: 172px;
-    width: 172px;
+    height: 5em;
+    width: 5em;
     border-radius: 50%;  
   }
 `
 
 const Container = styled.div`
-  width: 70%;
+  width: 60%;
   background-color: #ffffff;
-  height: 80%;
+  height: 90%;
   border-radius: 27px;
   box-shadow: 0 14px 25px 0 rgba(0, 0, 0, 0.33);
   display: flex;
@@ -68,28 +68,28 @@ const Container = styled.div`
     text-align: left;
   }
   .title {
-    font-size: 41px;
+    font-size: 2em;
     font-style: normal;
     color: #000000;
   }
   .address {
-    font-size: 23px;
+    font-size: 1em;
     font-weight: normal;
     font-style: normal;
     color: #b8b8b8;
   }
   .description {
-    font-size: 22px;
+    font-size: 1em;
     font-weight: 300;
     font-style: normal;
     line-height: 1.41;
     color: #000000;
   }
   .similar {
-    font-size: 24px;
+    font-size: 1.2em;
     font-weight: 500;
     font-style: normal;
-    margin: 80px 0 24px 0;
+    margin: 1.2em 0 24px 0;
     color: #c374ff;
   }
   .close {
@@ -97,7 +97,7 @@ const Container = styled.div`
     width: 24px;
     filter: invert(100%);
     margin-top: 36px;
-    right: calc(15% + 36px);
+    right: calc(20% + 36px);
   }
 `;
 
