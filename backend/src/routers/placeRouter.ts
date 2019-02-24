@@ -154,12 +154,35 @@ export default (app: fastify.FastifyInstance) => {
             return 0
         const place = await getPlace(placeId)
         if (!place)
-           return 404
+            return 404
 
         const fPlace = await FavoritePlace.create({
             userId
         })
         await fPlace.setPlace(place);
+
+        return 1
+    })
+
+    async function isImageLiked(userId: number, imageId: number) {
+        return !!(await Like.findOne({
+            where: {
+                userId,
+                imageId
+            },
+        }))
+    }
+
+    app.post('/api/places/likeImage/:imageId', async (request, reply) => {
+        const userId = 1
+        const imageId = request.params.imageId
+        if (await isImageLiked(userId, imageId))
+            return 0
+
+        await Like.create({
+            userId,
+            imageId
+        })
 
         return 1
     })
