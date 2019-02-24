@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="31" viewBox="0 0 32 31">
+  <defs>
+    <clipPath id="clip-star1">
+      <rect width="32" height="31"/>
+    </clipPath>
+  </defs>
+  <g id="star1" clip-path="url(#clip-star1)">
+    <rect width="32" height="31" fill="#fff"/>
+  </g>
+</svg>

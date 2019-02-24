@@ -6,7 +6,7 @@ import Gallery from "react-photo-gallery";
 import Background from "../images/background.jpg";
 import Drawer from "./Drawer";
 import SelectedImage from "./SelectedImage"
-//import PopUp from "./PopUp"
+import PopUp from "./PopUp"
 
 const styles = {
   inputRoot: {
@@ -235,6 +235,7 @@ function Search(props) {
         handleChangeCity={handleChangeCity}
         cities={cities}
       />
+      <PopUp />
     </>
   );
 }
