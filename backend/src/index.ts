@@ -11,17 +11,23 @@ import User from './providers/entities/User'
 import FavoritePlace from './providers/entities/FavoritePlace'
 
 import placeRouter from './routers/placeRouter'
+import { join } from 'path';
+import * as fastifyStatic from 'fastify-static';
 
 (async () => {
 
 
     //await FavoritePlace.sync()
     await sequelize.sync({
-        force: true
+        force: false
     })
 
     const app = fastify({
         // logger: true
+    })
+
+    app.register(fastifyStatic, {
+        root: join(__dirname, 'public'),
     })
 
    // app.register(fastifyJwt, { secret: config.JWT_SECRET })
@@ -30,7 +36,8 @@ import placeRouter from './routers/placeRouter'
 
 
     try {
-        await app.listen(3000)
+        const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+        await app.listen(port, "0.0.0.0")
         app.log.info('server started')
     } catch (err) {
         app.log.error(err)
