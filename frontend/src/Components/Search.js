@@ -47,6 +47,7 @@ const Header = styled.div`
 `;
 const SearchInput = styled.div`
   display: flex;
+  width: 60%;
   flex-direction: column;
   p:first-child {
     text-align: center;
@@ -240,7 +241,6 @@ function Search(props) {
         handleChangeCity={handleChangeCity}
         cities={cities}
       />
-      <PopUp />
     </>
   );
 }

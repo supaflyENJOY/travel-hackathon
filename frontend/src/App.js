@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 import './App.css';
 import Search from './Components/Search';
+import Landing from './Components/Landing'
 
 class App extends Component {
 
@@ -11,7 +12,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path='/'><Search /></Route>
+          <Route exact path='/'><Landing /></Route>
         </Switch>
       </Router>
     );
