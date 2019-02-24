@@ -91,6 +91,7 @@ function drawer({
         <InputLabel htmlFor="select-multiple-checkbox">City</InputLabel>
         <Select
           multiple
+          fullWidth
           value={cities.filter(city => city.checked)}
           onChange={handleChangeCity}
           input={<Input id="select-multiple-checkbox" />}

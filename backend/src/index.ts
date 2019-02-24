@@ -13,6 +13,7 @@ import FavoritePlace from './providers/entities/FavoritePlace'
 import placeRouter from './routers/placeRouter'
 import { join } from 'path';
 import * as fastifyStatic from 'fastify-static';
+import userRouter from './routers/userRouter';
 
 (async () => {
 
@@ -29,10 +30,11 @@ import * as fastifyStatic from 'fastify-static';
     app.register(fastifyStatic, {
         root: join(__dirname, 'public'),
     })
-
-   // app.register(fastifyJwt, { secret: config.JWT_SECRET })
+    app.register(require('fastify-formbody'))
+    app.register(fastifyJwt, { secret: config.JWT_SECRET })
 
     placeRouter(app);
+    userRouter(app);
 
 
     try {

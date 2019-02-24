@@ -7,6 +7,7 @@ import Background from "../images/background.jpg";
 import Drawer from "./Drawer";
 import SelectedImage from "./SelectedImage"
 import PopUp from "./PopUp"
+import FilterList from '@material-ui/icons/FilterList';
 
 const styles = {
   inputRoot: {
@@ -204,7 +205,7 @@ function Search(props) {
       <Header>
         <AppBar>
           <p>Logo</p>
-          <a onClick={toggleDrawer("right", true)}>Icon</a>
+          <a onClick={toggleDrawer("right", true)}><FilterList /></a>
         </AppBar>
         <SearchInput>
           <p>Find fancy places using tags!</p>

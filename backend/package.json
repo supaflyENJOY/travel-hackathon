@@ -13,7 +13,9 @@
   "dependencies": {
     "dotenv": "^6.2.0",
     "fastify": "^1.14.1",
+    "fastify-formbody": "^2.1.0",
     "fastify-jwt": "^0.9.3",
+    "fastify-plugin": "^1.5.0",
     "fastify-static": "^1.1.0",
     "fs-extra-promise": "^1.0.1",
     "imagemin": "^6.1.0",

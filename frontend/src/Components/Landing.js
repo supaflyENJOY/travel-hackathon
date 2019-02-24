@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Form from './Form'
 const Header = styled.div`
@@ -93,6 +93,7 @@ const Discover = styled.div`
   align-items:center;
   margin-top: 100px;
   width: 90%;
+  height: 100vh;
 `;
 
 const ImageContainer = styled.div`
@@ -112,14 +113,18 @@ const ImageBox = styled.div`
   }
 `
 export default function Landing() {
+
+  const [signInOpened, setSignInOpened] = useState(false);
+  const [signUpOpened, setSignUpOpened] = useState(false);
+
   return (
     <>
       <Header>
         <p>Trans.</p>
         <Links>
           <a href="#">Plot the route</a>
-          <a href="#">Sign in</a>
-          <a href="#">Sign up</a>
+          <a href="#" onClick={() => setSignInOpened(true)}>Sign in</a>
+          <a href="#" onClick={() => setSignUpOpened(true)}>Sign up</a>
         </Links>
       </Header>
       <MainPage>
@@ -158,7 +163,8 @@ export default function Landing() {
           </ImageBox>
         </ImageContainer>
       </Discover>
-      <Form />
+      {signInOpened ? <Form isRegistered={true} closeForm={() => setSignInOpened(false)} /> : undefined}
+      {signUpOpened ? <Form closeForm={() => setSignUpOpened(false)} /> : undefined}
     </>
   );
 }

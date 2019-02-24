@@ -6,7 +6,7 @@ import Region from '../providers/entities/Region'
 import FavoritePlace from '../providers/entities/FavoritePlace'
 import Like from '../providers/entities/Like'
 
-export default (app: fastify.FastifyInstance) => {
+export default (app) => {
     function mapArray(line: string) {
         if (!line)
             return undefined;
@@ -21,10 +21,8 @@ export default (app: fastify.FastifyInstance) => {
         },
     }]
 
-    async function markLiked(places: Array < any > ) {
-        if (false)
-            return undefined
-        const userId = 1
+    async function markLiked(places: Array < any >, userId) {
+        if(!userId) return places;
 
         const images = [].concat.apply([], places.map(place => place.images))
         const imageIds = images.map(image => image.id)
@@ -75,10 +73,10 @@ export default (app: fastify.FastifyInstance) => {
             subQuery: false
         })
 
-        return markLiked(places);
+        return markLiked(places, request.user.id);
     })
 
-    function getPlace(id: number) {
+    function getPlace(id: number, userId) {
         const place = Place.findOne({
             include,
             where: {
@@ -86,11 +84,20 @@ export default (app: fastify.FastifyInstance) => {
             }
         })
 
-        markLiked([place]);
+        markLiked([place], userId);
         return place;
     }
 
-    app.get('/api/places/:id', (request, reply) => getPlace(request.params.id))
+    app.get('/api/places/:id',
+    async (request, reply) => {
+        try {
+            await request.jwtVerify();
+        } catch(e) {
+
+        }
+        const user = request.user && request.user.id ? request.user.id : undefined;
+        return getPlace(request.params.id, user)
+    })
 
     app.get('/api/places/info', async (request, reply) => {
         const [categories, regions] = await Promise.all([
@@ -108,11 +115,12 @@ export default (app: fastify.FastifyInstance) => {
         }
     })
 
-    app.get('/api/places/favorite', async (request, reply) => {
-        if (false)
-            return 401 // kinesh unauthorize esli ne zaloginen
 
-        const userId = /*getUserId()*/ 1
+    app.get('/api/places/favorite', 
+    async (request, reply) => {
+        await request.jwtVerify();
+
+        const userId = request.user.id
         const favoritePlaces = FavoritePlace.findAll({
             where: {
                 userId
@@ -127,7 +135,7 @@ export default (app: fastify.FastifyInstance) => {
                 }
             }
         })
-        return markLiked(places)
+        return markLiked(places, userId)
     })
 
     async function isInFavorite(userId: number, placeId: number) {
@@ -144,15 +152,15 @@ export default (app: fastify.FastifyInstance) => {
         }))
     }
 
-    app.get('/api/places/addToFavorite/:placeId', async (request, reply) => {
-        if (false)
-            return 401 // kinesh unauthorize esli ne zaloginen
+    app.get('/api/places/addToFavorite/:placeId', 
+    async (request, reply) => {
+        await request.jwtVerify();
 
-        const userId = /*getUserId()*/ 1
+        const userId = request.user.id
         const placeId = request.params.placeId
         if (await isInFavorite(userId, placeId))
             return 0
-        const place = await getPlace(placeId)
+        const place = await getPlace(placeId, userId)
         if (!place)
             return 404
 
@@ -173,8 +181,10 @@ export default (app: fastify.FastifyInstance) => {
         }))
     }
 
-    app.post('/api/places/likeImage/:imageId', async (request, reply) => {
-        const userId = 1
+    app.post('/api/places/likeImage/:imageId', 
+    async (request, reply) => {
+        await request.jwtVerify();
+        const userId = request.user.id
         const imageId = request.params.imageId
         if (await isImageLiked(userId, imageId))
             return 0

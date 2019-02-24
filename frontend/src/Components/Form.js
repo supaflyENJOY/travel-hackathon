@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = {
   textField: {
@@ -29,10 +30,34 @@ const Container = styled.div`
   height: 90%;
   background: white;
   border-radius: 27px;
+  z-index: 0;
   box-shadow: 0 14px 25px 0 rgba(0, 0, 0, 0.33);
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const ButtonWrapper = styled.div`
+  margin-top: 25px;
+  button{
+    cursor: pointer;
+    border:none;
+    color:white;
+    width: 221.9px;
+    height: 62.9px;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.4;
+    letter-spacing: normal;
+    box-shadow: 0 9px 24px 0 rgba(0, 0, 0, 0.27);
+    background-color: #c374ff;
+  }
+  button:hover{
+    box-shadow: 0 9px 44px 0 rgba(0, 0, 0, 0.27);
+  }
 `;
 
 const Wrapper = styled.div`
@@ -40,6 +65,7 @@ const Wrapper = styled.div`
   height: 80%;
   text-align: left;
   display: flex;
+  z-index: 2;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -62,10 +88,26 @@ const Wrapper = styled.div`
   }
  
 `;
-function form(isRegistered = false, { textField }) {
+
+const Close = styled.div`
+  width: 65%;
+  height: 90%;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 50px;
+  padding-right: 50px;
+  svg {
+    cursor: pointer;
+  }
+ 
+`;
+function Form({ isRegistered = false, closeForm }) {
   return (
     <Layout>
       <Container>
+        <Close><CloseIcon onClick={closeForm} /></Close>
         <Wrapper>
           {isRegistered ? <h1>Sign in</h1> : <h1>Sign up</h1>}
           {isRegistered ? (
@@ -79,7 +121,7 @@ function form(isRegistered = false, { textField }) {
               label="Username"
               multiline
               margin="normal"
-              className={textField}
+              className={styles.textField}
             />
           )}
            <TextField
@@ -87,7 +129,7 @@ function form(isRegistered = false, { textField }) {
               label="Email"
               multiline
               margin="normal"
-              className={textField}
+              className={styles.textField}
             />
              <TextField
               id="standard-textarea"
@@ -96,11 +138,14 @@ function form(isRegistered = false, { textField }) {
               multiline
               fullwidth
               margin="normal"
-              className={textField}
+              className={styles.textField}
             />
+            <ButtonWrapper>
+              <button>{isRegistered ? <>Sign in</> : <>Sign up</>}</button>
+            </ButtonWrapper>
         </Wrapper>
       </Container>
     </Layout>
   );
 }
-export default withStyles(styles)(form);
+export default withStyles(styles)(Form);
