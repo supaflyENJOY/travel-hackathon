@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path='/'><Search /></Route>
+          <Route exact path='/'><Landing /></Route>
         </Switch>
       </Router>
     );
