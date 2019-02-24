@@ -14,17 +14,16 @@ import placeRouter from './routers/placeRouter'
 import { join } from 'path';
 import * as fastifyStatic from 'fastify-static';
 import userRouter from './routers/userRouter';
+import * as cors from 'cors';
 
 (async () => {
 
-
-    //await FavoritePlace.sync()
     await sequelize.sync({
         force: false
     })
 
     const app = fastify({
-        // logger: true
+         logger: true
     })
 
     app.register(fastifyStatic, {

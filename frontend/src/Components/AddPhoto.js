@@ -106,7 +106,7 @@ export default function addPhoto() {
           <p>Upload a photo and fill in all the text holders below</p>
           <InputForm>
             <ImageWrapper>
-              <img src={require("../images/frame-landscape.svg")} />
+              <img src={require("../images/frame.svg")} />
             </ImageWrapper>
             <Inputs>
               <TextField

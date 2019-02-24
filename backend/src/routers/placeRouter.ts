@@ -8,8 +8,8 @@ import Like from '../providers/entities/Like'
 import {
     writeFileAsync
 } from 'fs-extra-promise';
-import compressImage from 'src/utils/compressImage';
-import storage from 'src/utils/storage';
+import compressImage from '../utils/compressImage';
+import storage from '../utils/storage';
 import uniqid from 'uniqid';
 import {
     tmpdir

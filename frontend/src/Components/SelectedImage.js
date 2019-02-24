@@ -1,6 +1,6 @@
 import React from "react";
 
-const SelectedImage = ({
+const SelectedImage = (changeId) => ({
   index,
   onClick,
   photo,
@@ -8,7 +8,6 @@ const SelectedImage = ({
   direction,
   top,
   left,
-  changeId
 }) => {
   return (
     <div
@@ -24,7 +23,7 @@ const SelectedImage = ({
         overflow: "hidden"
       }}
       className={!photo.selected ? "not-selected" : ""}
-      onClick={() => changeId()}
+      onClick={() => changeId(photo)}
     >
       <img {...photo} />
       <style>{`.not-selected:hover{outline:2px solid #06befa}`}</style>

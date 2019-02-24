@@ -8,6 +8,10 @@ import Drawer from "./Drawer";
 import SelectedImage from "./SelectedImage"
 import PopUp from "./PopUp"
 import FilterList from '@material-ui/icons/FilterList';
+import AddPhoto from './AddPhoto';
+
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const styles = {
   inputRoot: {
@@ -23,6 +27,11 @@ const styles = {
     "&:after": {
       backgroundColor: "#cecece"
     }
+  },
+  fabStyles: {
+    position: 'fixed',
+    right: '50px',
+    bottom: '50px',
   }
 };
 
@@ -86,7 +95,7 @@ function Search(props) {
     right: false
   });
 
-  const[selectedPhoto, setSelectedPhoto] = useState(null)
+  //const[selectedPhoto, setSelectedPhoto] = useState(null)
 
   const toggleDrawer = (side, open) => () => {
     setDrawerState({ ...drawerState, [side]: open });
@@ -106,6 +115,8 @@ function Search(props) {
   ]);
 
   const [chips, setChips] = useState([]);
+
+  const [uploadOpened, setUploadOpened] = useState(false);
 
   const [categories, setCategories] = useState([
     {
@@ -200,8 +211,19 @@ function Search(props) {
     console.log(event.target.value);
   }
 
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  const openPhoto = (photo) => {
+    setSelectedPhoto(photo);
+  }
+
   return (
     <>
+    <div style={{ position: 'fixed', right: '25px', bottom: '25px', zIndex: 999}}>
+      <Fab onClick={() => setUploadOpened(true)} color="primary">
+        <AddIcon />
+      </Fab>
+    </div>
       <Header>
         <AppBar>
           <p>Logo</p>
@@ -228,7 +250,7 @@ function Search(props) {
         <p>Recommended</p>
         <Gallery 
           photos={photos} 
-          ImageComponent={SelectedImage} 
+          ImageComponent={SelectedImage(openPhoto)} 
           changeId={setSelectedPhoto} 
           direction='column'
           margin={5}
@@ -242,6 +264,8 @@ function Search(props) {
         handleChangeCity={handleChangeCity}
         cities={cities}
       />
+      { uploadOpened ? <AddPhoto /> : undefined }
+      { selectedPhoto ? <PopUp closePopup={() => setSelectedPhoto(null)} photo={selectedPhoto} /> : undefined}
     </>
   );
 }

@@ -13,6 +13,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path='/'><Landing /></Route>
+          <Route exact path='/home'><Search /></Route>
         </Switch>
       </Router>
     );

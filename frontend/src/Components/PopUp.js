@@ -101,13 +101,14 @@ const Container = styled.div`
   }
 `;
 
-export default function popUp({ id }) {
+export default function popUp({ id, photo, closePopup }) {
+  console.log(photo);
   return (
     <Layout>
       <Container>
-        <img className={"close"} src={require("../images/close.svg")} />
+        <img className={"close"} onClick={closePopup} src={require("../images/close.svg")} />
         <ImageContainer>
-          <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
+          <img src={photo.src} />
         </ImageContainer>
         <Wrapper>
           <p className={"title"}>Green woods</p>
@@ -121,11 +122,11 @@ export default function popUp({ id }) {
           </p>
           <p className={"similar"}>Similar photos</p>
           <SimilarPhotos>
-            <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
-            <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
-            <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
-            <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
-            <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
+            <img src={photo.src} />
+            <img src={photo.src} />
+            <img src={photo.src} />
+            <img src={photo.src} />
+            <img src={photo.src} />
           </SimilarPhotos>
         </Wrapper>
       </Container>

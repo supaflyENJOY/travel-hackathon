@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "./Form";
 import Background from "../images/bg.svg";
+import { Link } from 'react-router-dom';
+
+
 
 const Header = styled.div`
   margin-top: 40px;
@@ -162,9 +165,10 @@ export default function Landing() {
         <p>Trans.</p>
         <Links>
           <a href="#">Plot the route</a>
-          <a href="#" onClick={() => setSignInOpened(true)}>
+          <Link to="/home">Sign in</Link>
+          {/* <a href="#" onClick={() => setSignInOpened(true)}>
             Sign in
-          </a>
+          </a> */}
           <a href="#" onClick={() => setSignUpOpened(true)}>
             Sign up
           </a>
@@ -187,6 +191,7 @@ export default function Landing() {
       <Discover>
         <Title>Discover & Visit</Title>
         <p>Discover unique places and share photos by posting them on Trans.</p>
+
         <ImageContainer>
           <ImageBox>
             <img src={require("../images/like.svg")} />
