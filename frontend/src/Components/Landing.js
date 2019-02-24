@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "./Form";
+import Background from "../images/bg.svg";
 
 const Header = styled.div`
   margin-top: 40px;
@@ -97,7 +98,7 @@ const Discover = styled.div`
   align-items: center;
   margin-top: 100px;
   width: 90%;
-  height: 100vh;
+  height: 80vh;
 `;
 
 const ImageContainer = styled.div`
@@ -123,6 +124,10 @@ const FindPlace = styled.section`
   justify-content: center;
   align-items: center;
   width: 90%;
+  background-image: url('${Background}');
+  background-repeat:no-repeat;
+  background-position: center; 
+
 `;
 const ImageWrapper = styled.div`
   margin: 40px 0 40px 0;
@@ -203,21 +208,21 @@ export default function Landing() {
       </Discover>
       <FindPlace>
         <ImageWrapper>
-          <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
-          <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
+          <img src={"https://images.unsplash.com/photo-1546198633-17b6085e28dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"} />
+          <img src={"https://images.unsplash.com/photo-1522879943092-d2b0e4e1da17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=382&q=80"} />
         </ImageWrapper>
         <ImageWrapper>
-          <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
+          <img src={"https://images.unsplash.com/photo-1516469069363-3e3fabeb2116?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"} />
           <Title>Find your place!</Title>
-          <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
+          <img src={"https://images.unsplash.com/photo-1502784444187-359ac186c5bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=401&q=80"} />
         </ImageWrapper>
 
         <ImageWrapper>
-          <img src={"https://source.unsplash.com/2ShvY8Lf6l0/800x599"} />
+          <img src={"https://images.unsplash.com/photo-1517505964376-f1d72fcd566b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80"} />
         </ImageWrapper>
       </FindPlace>
       <Footer>
-        <Title>Designed by Karina Altovska</Title>
+        <Title>4yx-4yx</Title>
       </Footer>
       {signInOpened ? (
         <Form isRegistered={true} closeForm={() => setSignInOpened(false)} />

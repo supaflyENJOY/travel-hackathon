@@ -1,39 +1,16 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;" xml:space="preserve">
-<path d="M326.632,10.346c-38.733,0-74.991,17.537-99.132,46.92c-24.141-29.383-60.399-46.92-99.132-46.92
-	C57.586,10.346,0,67.931,0,138.714c0,55.426,33.049,119.535,98.23,190.546c50.162,54.649,104.729,96.96,120.257,108.626l9.01,6.769
-	l9.009-6.768c15.53-11.667,70.099-53.979,120.26-108.625C421.95,258.251,455,194.141,455,138.714
-	C455,67.931,397.414,10.346,326.632,10.346z"/>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="105" height="97" viewBox="0 0 105 97">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e4acff"/>
+      <stop offset="0.008" stop-color="#fd979f"/>
+      <stop offset="1" stop-color="#d252f7"/>
+    </linearGradient>
+    <clipPath id="clip-heart">
+      <rect width="105" height="97"/>
+    </clipPath>
+  </defs>
+  <g id="heart" clip-path="url(#clip-heart)">
+    <rect width="105" height="97" fill="#fff"/>
+    <path id="favorite" d="M72.059,10.346A28.324,28.324,0,0,0,50.189,20.7,28.307,28.307,0,0,0,0,38.666C0,50.893,7.291,65.037,21.671,80.7A208.7,208.7,0,0,0,48.2,104.667l1.988,1.493,1.988-1.493A208.711,208.711,0,0,0,78.707,80.7c14.38-15.666,21.672-29.809,21.672-42.037A28.352,28.352,0,0,0,72.059,10.346Z" transform="translate(2 -8.914)" fill="url(#linear-gradient)"/>
+  </g>
 </svg>

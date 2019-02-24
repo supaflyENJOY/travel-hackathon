@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="861" viewBox="0 0 1920 861">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e4acff"/>
+      <stop offset="0.008" stop-color="#fd979f"/>
+      <stop offset="1" stop-color="#d252f7"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e4acff"/>
+      <stop offset="0.008" stop-color="#97c3fd"/>
+      <stop offset="1" stop-color="#a552f7"/>
+    </linearGradient>
+    <clipPath id="clip-bg">
+      <rect width="1920" height="861"/>
+    </clipPath>
+  </defs>
+  <g id="bg" clip-path="url(#clip-bg)">
+    <rect width="1920" height="861" fill="#fff"/>
+    <circle id="Ellipse_690" data-name="Ellipse 690" cx="55.5" cy="55.5" r="55.5" transform="translate(947 77)" fill="url(#linear-gradient)"/>
+    <circle id="Ellipse_691" data-name="Ellipse 691" cx="21.5" cy="21.5" r="21.5" transform="translate(683 533)" fill="url(#linear-gradient-2)"/>
+    <circle id="Ellipse_692" data-name="Ellipse 692" cx="14.5" cy="14.5" r="14.5" transform="translate(1127 489)" fill="url(#linear-gradient)"/>
+    <circle id="Ellipse_693" data-name="Ellipse 693" cx="19" cy="19" r="19" transform="translate(405 95)" fill="url(#linear-gradient-2)"/>
+    <circle id="Ellipse_694" data-name="Ellipse 694" cx="26.5" cy="26.5" r="26.5" transform="translate(1558 148)" fill="url(#linear-gradient-2)"/>
+    <circle id="Ellipse_695" data-name="Ellipse 695" cx="22.5" cy="22.5" r="22.5" transform="translate(130 188)" fill="url(#linear-gradient)"/>
+    <circle id="Ellipse_696" data-name="Ellipse 696" cx="31" cy="31" r="31" transform="translate(130 661)" fill="url(#linear-gradient-2)"/>
+    <circle id="Ellipse_697" data-name="Ellipse 697" cx="19.5" cy="19.5" r="19.5" transform="translate(1752 746)" fill="url(#linear-gradient-2)"/>
+    <circle id="Ellipse_698" data-name="Ellipse 698" cx="8" cy="8" r="8" transform="translate(1725 289)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
