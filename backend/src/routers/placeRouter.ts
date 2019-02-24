@@ -5,6 +5,16 @@ import Category from '../providers/entities/Category'
 import Region from '../providers/entities/Region'
 import FavoritePlace from '../providers/entities/FavoritePlace'
 import Like from '../providers/entities/Like'
+import {
+    writeFileAsync
+} from 'fs-extra-promise';
+import compressImage from 'src/utils/compressImage';
+import storage from 'src/utils/storage';
+import uniqid from 'uniqid';
+import {
+    tmpdir
+} from 'os';
+import * as imageSize from 'image-size'
 
 export default (app) => {
     function mapArray(line: string) {
@@ -21,8 +31,8 @@ export default (app) => {
         },
     }]
 
-    async function markLiked(places: Array < any >, userId) {
-        if(!userId) return places;
+    async function markLiked(places: Array < any > , userId) {
+        if (!userId) return places;
 
         const images = [].concat.apply([], places.map(place => place.images))
         const imageIds = images.map(image => image.id)
@@ -89,15 +99,15 @@ export default (app) => {
     }
 
     app.get('/api/places/:id',
-    async (request, reply) => {
-        try {
-            await request.jwtVerify();
-        } catch(e) {
+        async (request, reply) => {
+            try {
+                await request.jwtVerify();
+            } catch (e) {
 
-        }
-        const user = request.user && request.user.id ? request.user.id : undefined;
-        return getPlace(request.params.id, user)
-    })
+            }
+            const user = request.user && request.user.id ? request.user.id : undefined;
+            return getPlace(request.params.id, user)
+        })
 
     app.get('/api/places/info', async (request, reply) => {
         const [categories, regions] = await Promise.all([
@@ -116,27 +126,27 @@ export default (app) => {
     })
 
 
-    app.get('/api/places/favorite', 
-    async (request, reply) => {
-        await request.jwtVerify();
+    app.get('/api/places/favorite',
+        async (request, reply) => {
+            await request.jwtVerify();
 
-        const userId = request.user.id
-        const favoritePlaces = FavoritePlace.findAll({
-            where: {
-                userId
-            }
-        })
-
-        const places = Place.findAll({
-            include,
-            where: {
-                id: {
-                    $in: favoritePlaces.map(fp => fp.id)
+            const userId = request.user.id
+            const favoritePlaces = FavoritePlace.findAll({
+                where: {
+                    userId
                 }
-            }
+            })
+
+            const places = Place.findAll({
+                include,
+                where: {
+                    id: {
+                        $in: favoritePlaces.map(fp => fp.id)
+                    }
+                }
+            })
+            return markLiked(places, userId)
         })
-        return markLiked(places, userId)
-    })
 
     async function isInFavorite(userId: number, placeId: number) {
         return !!(await FavoritePlace.findOne({
@@ -152,25 +162,25 @@ export default (app) => {
         }))
     }
 
-    app.get('/api/places/addToFavorite/:placeId', 
-    async (request, reply) => {
-        await request.jwtVerify();
+    app.get('/api/places/addToFavorite/:placeId',
+        async (request, reply) => {
+            await request.jwtVerify();
 
-        const userId = request.user.id
-        const placeId = request.params.placeId
-        if (await isInFavorite(userId, placeId))
-            return 0
-        const place = await getPlace(placeId, userId)
-        if (!place)
-            return 404
+            const userId = request.user.id
+            const placeId = request.params.placeId
+            if (await isInFavorite(userId, placeId))
+                return 0
+            const place = await getPlace(placeId, userId)
+            if (!place)
+                return 404
 
-        const fPlace = await FavoritePlace.create({
-            userId
+            const fPlace = await FavoritePlace.create({
+                userId
+            })
+            await fPlace.setPlace(place);
+
+            return 1
         })
-        await fPlace.setPlace(place);
-
-        return 1
-    })
 
     async function isImageLiked(userId: number, imageId: number) {
         return !!(await Like.findOne({
@@ -181,19 +191,50 @@ export default (app) => {
         }))
     }
 
-    app.post('/api/places/likeImage/:imageId', 
-    async (request, reply) => {
-        await request.jwtVerify();
-        const userId = request.user.id
-        const imageId = request.params.imageId
-        if (await isImageLiked(userId, imageId))
-            return 0
+    app.post('/api/places/likeImage/:imageId',
+        async (request, reply) => {
+            await request.jwtVerify();
+            const userId = request.user.id
+            const imageId = request.params.imageId
+            if (await isImageLiked(userId, imageId))
+                return 0
 
-        await Like.create({
-            userId,
-            imageId
+            await Like.create({
+                userId,
+                imageId
+            })
+
+            return 1
         })
 
-        return 1
+    app.post('/api/places/create', async (request, reply) => {
+        await request.jwtVerify();
+
+        const {
+            title,
+            description
+        } = request.body
+        const image = request.raw.image
+        const path = `${tmpdir()}/${image.name}`;
+        await writeFileAsync(path, image.data);
+        const compressedPath = await compressImage(path);
+        const imagePath = storage.uploadFile(compressedPath, `${uniqid()}.jpg`);
+        const {
+            width,
+            heigth
+        } = imageSize(imagePath);
+
+        const place = await Place.create({
+            title,
+            description
+        })
+
+        const imageData = await place.addImage({
+            imagePath,
+            width,
+            heigth
+        })
+
+        return imageData
     })
 }
