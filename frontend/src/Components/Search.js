@@ -103,9 +103,7 @@ function Search(props) {
     }
   ]);
 
-  function handleChange(event) {
-    //setCities(event.target.value);
-  }
+  const [chips, setChips] = useState([]);
 
   const [categories, setCategories] = useState([
     {
@@ -176,6 +174,14 @@ function Search(props) {
     }
   ];
 
+  const handleAddChip = (chip) => {
+    setChips([...chips, chip])
+  }
+
+  const handleDeleteChip = (chip, index) => {
+    setChips(chips.filter((v, idx) => idx != index));
+  }
+
   const handleChangeCity = (event) => {
     const selectedCities = event.target.value;
     const newCities = cities.map(city => {
@@ -198,8 +204,9 @@ function Search(props) {
         <SearchInput>
           <p>Find fancy places using tags!</p>
           <ChipInput
-            defaultValue={["foo", "bar"]}
-            onChange={chips => handleChange(chips)}
+            dataSource={chips}
+            onRequestAdd={(chip) => handleAddChip(chip)}
+            onRequestDelete={(chip, index) => handleDeleteChip(chip, index)}
             placeholder='Separate tags pushing "Enter"'
             classes={{
               chipContainer: classes.chipContainer,
