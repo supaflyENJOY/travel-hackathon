@@ -44,7 +44,8 @@ function drawer({
   categories,
   handleChangeCategory, 
   classes,
-  cities
+  cities,
+  handleChangeCity,
   }) {
 
 
@@ -82,28 +83,27 @@ function drawer({
       <Wrapper>
         <p>Filter places</p>
         <p>By Categories</p>
-        <FormGroup column>
+        <FormGroup>
           {checkboxes}
         </FormGroup>
         <p>By City</p>
-        {/* <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
+        <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="select-multiple-checkbox">City</InputLabel>
         <Select
           multiple
-          value={cities}
-          onChange={handleChange}
+          value={cities.filter(city => city.checked)}
+          onChange={handleChangeCity}
           input={<Input id="select-multiple-checkbox" />}
-          renderValue={selected => selected.join(', ')}
-          MenuProps={MenuProps}
+          renderValue={selected => selected.map(city => city.title).join(', ')}
         >
-          {cities.map(name => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
+          {cities.map(city => (
+            <MenuItem key={city.id} value={city.id}>
+              <Checkbox checked={city.checked} />
+              <ListItemText primary={city.title} />
             </MenuItem>
           ))}
         </Select>
-      </FormControl> */}
+      </FormControl>
       </Wrapper>
       </SwipeableDrawer>
     </>

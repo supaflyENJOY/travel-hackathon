@@ -93,16 +93,18 @@ function Search(props) {
   const [cities, setCities] = useState([
     {
       id: 1,
-      title: "Zhytomyr"
+      title: "Zhytomyr",
+      checked: false,
     },
     {
       id: 2,
-      title: "Kyiv"
+      title: "Kyiv",
+      checked: false,
     }
   ]);
 
   function handleChange(event) {
-    setCities(event.target.value);
+    //setCities(event.target.value);
   }
 
   const [categories, setCategories] = useState([
@@ -174,7 +176,17 @@ function Search(props) {
     }
   ];
 
-  function handleChange(chip) {}
+  const handleChangeCity = (event) => {
+    const selectedCities = event.target.value;
+    const newCities = cities.map(city => {
+      if(selectedCities.includes(city.id)) return {
+        ...city,
+        checked: !city.checked,
+      }
+      return city;
+    });
+    setCities(newCities)
+  }
 
   return (
     <>
@@ -213,6 +225,7 @@ function Search(props) {
         drawerState={drawerState}
         categories={categories}
         handleChangeCategory={handleChangeCategory}
+        handleChangeCity={handleChangeCity}
         cities={cities}
       />
     </>
